@@ -1,0 +1,48 @@
+scalar Void
+scalar DataTime
+
+type User {
+  id: ID!
+  email: String!
+  hash: String!
+  hashRt: String
+
+  createdAt: DataTime!
+  updatedAt: DataTime
+}
+
+input SigninUserInput {
+  email: String!
+  password: String!
+}
+
+input SignupUserInput {
+  email: String!
+  password: String!
+}
+
+type SigninResponse {
+  accessToken: String!
+  refreshToken: String!
+}
+type SignupResponse {
+  accessToken: String!
+  refreshToken: String!
+}
+
+type RefreshTokenResponse {
+  accessToken: String!
+  refreshToken: String!
+}
+
+type Query {
+  hello: String!
+  me: User
+}
+
+type Mutation {
+  signup(input: SignupUserInput!): SignupResponse!
+  signin(input: SigninUserInput!): SigninResponse!
+  refreshToken: RefreshTokenResponse!
+  logout: Void
+}
